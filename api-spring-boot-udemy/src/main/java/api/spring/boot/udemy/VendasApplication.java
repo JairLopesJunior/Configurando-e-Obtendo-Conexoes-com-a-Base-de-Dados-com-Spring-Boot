@@ -31,6 +31,26 @@ public class VendasApplication {
 
             List<Cliente> todosClientes = clientes.obterTodos();
             todosClientes.forEach(System.out::println);
+
+            todosClientes.forEach(c -> {
+                c.setNome(c.getNome() + " atualizado");
+                clientes.atualizar(c);
+            });
+
+            System.out.println("Buscando por nome:");
+            clientes.buscarPorNome("oa").forEach(System.out::println);
+
+            System.out.println("Deletando:");
+            clientes.obterTodos().forEach(c -> {
+                clientes.delete(c);
+            });
+
+            todosClientes = clientes.obterTodos();
+            if(todosClientes.isEmpty()){
+                System.out.println("Nenhum cliente encontrado");
+            }else{
+                todosClientes.forEach(System.out::println);
+            }
         };
     }
 
